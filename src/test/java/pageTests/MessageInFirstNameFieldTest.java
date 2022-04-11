@@ -6,9 +6,9 @@ import pages.MainPage;
 
 import static utils.TestDataFaker.*;
 
-public class MessageInFirstNameFieldTest extends BaseTest{
+public class MessageInFirstNameFieldTest extends BaseTest {
     @Test
-    public void checkMessageFields(){
+    public void checkMessageFields() {
         String exceptedMessageRegister = "First Name must be between 1 and 32 characters!";
         MainPage mainPage = new MainPage();
         String actualMessage = mainPage.clickMyAccountIcon()
@@ -16,11 +16,11 @@ public class MessageInFirstNameFieldTest extends BaseTest{
                 .enterLastName(getLastName())
                 .enterEmail(getEmail())
                 .enterPhoneNumber(getPhoneNumber())
-                .enterPassword()
-                .enterConfirmPassword()
+                .enterPassword("password")
+                .enterConfirmPassword("password")
                 .clickPrivacyPolicy()
                 .clickContinueButton()
-                .messageAfterClickConfirm();
+                .getErrorMessage();
         Assertions.assertThat(actualMessage)
                 .as("FirstName field is empty:First Name must be between 1 and 32 characters! ")
                 .isEqualTo(exceptedMessageRegister);
