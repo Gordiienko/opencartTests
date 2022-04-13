@@ -1,8 +1,9 @@
 package pageTests;
 
+
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
-import pages.IphonePage;
+import pages.IphoneProductPage;
 import pages.MainPage;
 
 public class IphonePriseTest extends BaseTest {
@@ -12,25 +13,27 @@ public class IphonePriseTest extends BaseTest {
         String exceptedEuroPrise = "106.04€";
         String exceptedPoundSterlingPrise = "£92.93";
         MainPage mainPage = new MainPage();
-        String expectedCurrency = "USD";
-        mainPage.selectCurrency(expectedCurrency)
-                .clickIphoneProductButton();
-        IphonePage iphonePage = new IphonePage();
-        String actualDollarPrise = iphonePage
+        String actualDollarPrise = mainPage
+                .checkCurrencyIcon()
                 .checkDollarPrise();
-        Assertions.assertThat(actualDollarPrise).as("Dollar prise of Iphone must be: $123.20")
+        Assertions.assertThat(actualDollarPrise).as("Prise in Dollar of Iphone must be: $123.20")
                 .isEqualTo(exceptedDollarPrise);
-        String actualEuroPrise = iphonePage
+
+        IphoneProductPage iphoneProductPage = new IphoneProductPage();
+        String actualEuroPrise = iphoneProductPage
                 .clickCurrencyButton()
                 .clickEuroButton()
-                .checkEuroPrise();
-        Assertions.assertThat(actualEuroPrise).as("Euro prise of Iphone must be: 123.20")
+                .getEuroPrise();
+
+        Assertions.assertThat(actualEuroPrise).as("Prise in Euro of Iphone must be: 106.04€")
                 .isEqualTo(exceptedEuroPrise);
-        String actualPoundSterling = iphonePage
+
+        String actualPoundSterling = iphoneProductPage
                 .clickCurrencyButton()
                 .clickPoundSterlingButton()
                 .checkPoundSterlingPrise();
-        Assertions.assertThat(actualPoundSterling).as("Pound Sterling prise of Iphone must be: 123.20")
+
+        Assertions.assertThat(actualPoundSterling).as("Pris in Pound Sterling must be: £92.93")
                 .isEqualTo(exceptedPoundSterlingPrise);
     }
 }

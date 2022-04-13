@@ -29,6 +29,11 @@ public abstract class BasePage {
         actions.moveToElement(element).build().perform();
     }
 
+    protected WebElement waitUntilVisible(By locator, int seconds) {
+        return new WebDriverWait(getDriver(), Duration.ofSeconds(2))
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
     public WebElement find(By locator) {
         return getDriver().findElement(locator);
     }
@@ -37,9 +42,5 @@ public abstract class BasePage {
         return getDriver().findElements(locator);
     }
 
-  /*  public WebElement waitUntilVisible(By locator, int seconds) {
-       return new WebDriverWait(getDriver(), Duration.ofSeconds(seconds))
-                .until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }*/
 
 }

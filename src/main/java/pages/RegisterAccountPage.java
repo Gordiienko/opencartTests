@@ -11,7 +11,6 @@ public class RegisterAccountPage extends BasePage {
     private final By validConfirmPasswordField = By.id("input-confirm");
     private final By clickPrivacyPolicy = By.xpath("//input[@name='agree']");
     private final By continueButton = By.xpath("//input[@value='Continue']");
-
     private final By messageAfterClick = By.xpath("//div[text()='First Name must be between 1 and 32 characters!']");
 
 
@@ -56,13 +55,18 @@ public class RegisterAccountPage extends BasePage {
         return this;
     }
 
-    public RegisterAccountPage clickContinueButton() {
-        find(continueButton).click();
-        return this;
-    }
-
     public String getErrorMessage() {
         return find(messageAfterClick).getText();
+    }
+
+    public PersonalAccountPage clickContinueButton() {
+        find(continueButton).click();
+        return new PersonalAccountPage();
+    }
+
+    public RegisterAccountPage clickButtonForCheckInvalidMessage() {
+        find(continueButton).click();
+        return this;
     }
 
 

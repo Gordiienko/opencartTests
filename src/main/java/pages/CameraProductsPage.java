@@ -8,7 +8,7 @@ import java.util.List;
 
 import static java.lang.String.format;
 
-public class CamerasPage extends BasePage {
+public class CameraProductsPage extends BasePage {
     private final By product = By.cssSelector(".product-thumb");
 
     public List<WebElement> getAllProduct() {

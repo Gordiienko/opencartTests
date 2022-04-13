@@ -3,12 +3,12 @@ package pageTests;
 import blocks.ProductBlock;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
-import pages.CamerasPage;
+import pages.CameraProductsPage;
 import pages.MainPage;
 
 public class CamerasTest extends BaseTest{
     MainPage mainPage = new MainPage();
-    CamerasPage camerasPage = new CamerasPage();
+    CameraProductsPage camerasPage = new CameraProductsPage();
     @Test
     public void checkPriseOfCameras(){
         String cannonCamera = "Canon EOS 5D";
